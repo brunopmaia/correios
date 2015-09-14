@@ -66,7 +66,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
     public function testSolicitarRange()
     {
-        $this->client->solicitarRange('LS', '', 1);
+        $this->client->solicitarRange('AP', '', 1);
     }
 }
 

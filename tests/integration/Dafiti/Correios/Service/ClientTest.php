@@ -20,8 +20,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ])
         );
     }
+
     public function testSolicitarRange()
     {
-        var_dump($this->client->solicitarRange('LS', '', 1));
+        $this->assertTrue($this->client->solicitarRange('AP', '', 1) instanceof \Dafiti\Correios\Entity\ResponseObject);
     }
 }

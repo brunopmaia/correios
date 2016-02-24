@@ -36,7 +36,9 @@ class SolicitarPostagemReversa extends FacadeInterface
                 'destinatario.cidade',
                 'destinatario.uf',
                 'destinatario.cep',
-            ],'Mandatory',[],
+            ],
+            'Mandatory',
+            [],
         ],
     ];
 

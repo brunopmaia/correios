@@ -15,25 +15,26 @@ class CodVerificador
     public static function calculate($num)
     {
         $multipliers = [8, 6, 4, 2, 3, 5, 9, 7];
-        $sum = 0;
         $verifyDigit;
 
-        if (strlen($num) != 8 || !is_string($num)) {
-            throw new \InvalidArgumentException('Number shoul have exactaly 8 digits');
+        if (strlen($num) !== 8 || !is_string($num)) {
+            throw new \InvalidArgumentException('Number should have exactaly 8 digits');
         } else {
-            for ($i = 0; $i < 8; ++$i) {
-                $sum += substr($num, $i, ($i + 1)) * $multipliers[$i];
-            }
+            $sum = array_sum(array_map(
+                function ($x, $y) { return $x * $y; },
+                str_split($num),
+                $multipliers
+            ));
 
             $rest = $sum % 11;
-            if ($rest == 0) {
-                $verifyDigit = '5';
-            } elseif ($rest == 1) {
-                $verifyDigit = '0';
+            if ($rest === 0) {
+                $verifyDigit = 5;
+            } elseif ($rest === 1) {
+                $verifyDigit = 0;
             } else {
-                $verifyDigit = (11 - $rest).'';
+                $verifyDigit = (11 - $rest);
             }
-            $num += $verifyDigit;
+            $num .= $verifyDigit;
         }
 
         return $num;

@@ -22,8 +22,8 @@ class SolicitarRange extends FacadeInterface
     protected $rules = [
         [
             ['tipo'], 'Constant', ['values' => ['AP', 'LR', 'LE', 'LS', 'LV']],
-        ],[
-            ['usuario','senha','codAdministrativo','contrato','tipo','quantidade'], 'Mandatory', [],
+        ], [
+            ['usuario', 'senha', 'codAdministrativo', 'contrato', 'tipo', 'quantidade'], 'Mandatory', [],
         ],
     ];
 

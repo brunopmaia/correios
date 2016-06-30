@@ -32,12 +32,21 @@ class SoapAdapter extends \SoapClient
         ]);
 
         $this->setConfig($config);
+
+        $options = [
+            'stream_context' => $context,
+            'trace' => 1
+        ];
+
+        // basic authentication may be needed
+        if ($config->getBasicUser() && $config->getBasicPass()) {
+            $options['login']    = $config->getBasicUser();
+            $options['password'] = $config->getBasicPass();
+        }
+
         parent::__construct(
             $this->getConfig()->getWsdl(),
-            [
-                'stream_context' => $context,
-                'trace' => 1,
-            ]
+            $options
         );
     }
 

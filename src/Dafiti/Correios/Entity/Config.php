@@ -21,6 +21,8 @@ class Config extends \ArrayObject
     private $codAdministrativo;
     private $contrato;
     private $logPath;
+    private $basicUser;
+    private $basicPass;
 
     private $mandatory = [
         'wsdl',
@@ -38,6 +40,12 @@ class Config extends \ArrayObject
             $this->setSenha($data['senha']);
             $this->setCodAdministrativo($data['codAdministrativo']);
             $this->setContrato($data['contrato']);
+
+            // basic authentication when needed
+            if (isset($data['basicUser']) && isset($data['basicPass'])) {
+                $this->setBasicUser($data['basicUser'])
+                     ->setBasicPass($data['basicPass']);
+            }
 
             if (!empty($data['logPath'])) {
                 $this->setLogPath($data['logPath']);
@@ -103,6 +111,28 @@ class Config extends \ArrayObject
     public function getLogPath()
     {
         return $this->logPath;
+    }
+
+    public function getBasicUser()
+    {
+        return $this->basicUser;
+    }
+
+    public function setBasicUser($basicUser)
+    {
+        $this->basicUser = $basicUser;
+        return $this;
+    }
+
+    public function getBasicPass()
+    {
+        return $this->basicPass;
+    }
+
+    public function setBasicPass($basicPass)
+    {
+        $this->basicPass = $basicPass;
+        return $this;
     }
 
     /**
